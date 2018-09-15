@@ -207,10 +207,10 @@ class Collection(FileSystemCollection):
         self._fill_request(filters, request)
         if not request:
             return super().get_all_filtered(filters)
-        if 'dtstart' in request:
+        if 'dtstart' in request and request['dtstart'] is not None:
             request['dtstart'] = self.dt_to_timestamp(
                 datetime.strptime(request['dtstart'], "%Y%m%dT%H%M%SZ"))
-        if 'dtend' in request:
+        if 'dtend' in request and request['dtend'] is not None:
             request['dtend'] = self.dt_to_timestamp(
                 datetime.strptime(request['dtend'], "%Y%m%dT%H%M%SZ"))
 
